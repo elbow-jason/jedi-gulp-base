@@ -1,0 +1,7 @@
+/node_modules/
+*.log
+log/
+*.swp
+.DS_Store
+public/css/*.css
+public/js/*.js

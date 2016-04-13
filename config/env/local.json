@@ -1,0 +1,16 @@
+{
+  "title": "Jedi Base",
+  "hot-server": true,
+  "port": 8400,
+  "hot-server": true,
+  "databases": {
+    "athena": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "jedi",
+      "password": "maytheforcebewithyou",
+      "database": "jedi_gulp_base_development"
+    }
+  },
+  "templateEngine": "swig"
+}

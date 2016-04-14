@@ -5,6 +5,7 @@ import {  SIGNUP,
 import * as authAPI           from "../api/authAPI"
 import store                  from "../store"
 import { redirectTo, logIt }  from "../utilities/helpers"
+import { setUser }            from "./user"
 
 const signupSuccess = (response) => {
   return {
@@ -22,12 +23,13 @@ const signupFailure = (response) => {
   } 
 }
 
-const signup = ({ email, password }) => {
+const signup = ({ firstName, lastName, email, password }) => {
   authAPI
-    .signup({ email, password })
+    .signup({ firstName, lastName, email, password })
     .then(response  => {
       store.dispatch(signupSuccess(response))
-      redirectTo("/signin")
+      store.dispatch(setUser(response))
+      redirectTo("/dashboard")
     })
     .catch(response => {
       store.dispatch(signupFailure(response))

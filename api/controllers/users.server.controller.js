@@ -47,8 +47,8 @@ exports.signin = function(req, res, next) {
 exports.signup = function(req, res) {
 	// TODO: Remove/scrub user credentials from console.logs
 	console.log('signup');
-	console.log('req.body');
-	console.log(req.body);
+	// console.log('req.body');
+	// console.log(req.body);
 
 	var firstName   = req.body.firstName;
 	var lastName    = req.body.lastName;
@@ -66,7 +66,7 @@ exports.signup = function(req, res) {
 		})
 		.then(
 			function(user){
-				console.log(user);
+				//console.log(user);
 				user.password          = undefined;
 				user.bcrypted_password = undefined;
 

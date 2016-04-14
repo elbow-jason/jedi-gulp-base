@@ -26,23 +26,41 @@ nconf.defaults({
 });
 nconf.file('config/env/' + nconf.get('NODE_ENV') + '.json');
 
-var athena_db          = nconf.get('databases').athena.database;
-var athena_db_username = nconf.get('databases').athena.user;
-var athena_db_password = nconf.get('databases').athena.password;
-var athena_db_options  = {};
-athena_db_options.host = nconf.get('databases').athena.host;
-athena_db_options.port = nconf.get('databases').athena.port;
+// var athena_db          = nconf.get('databases').athena.database;
+// var athena_db_username = nconf.get('databases').athena.user;
+// var athena_db_password = nconf.get('databases').athena.password;
+// var athena_db_options  = {};
+// athena_db_options.host = nconf.get('databases').athena.host;
+// athena_db_options.port = nconf.get('databases').athena.port;
 
-var athena_sequelize   = new Sequelize(athena_db, athena_db_username, athena_db_password, athena_db_options);
+// var athena_sequelize   = new Sequelize(athena_db, athena_db_username, athena_db_password, athena_db_options);
 
-require('./api/models/user.model.js')(athena_sequelize);
-require('./api/models/region.model.js')(athena_sequelize);
+// require('./api/models/user.model.js')(athena_sequelize);
+// require('./api/models/region.model.js')(athena_sequelize);
 
-athena_sequelize.sync()
+// athena_sequelize.sync()
 
 
 
-var sessionStore       = new SessionStore(nconf.get('databases').athena);
+var jedi_db          = nconf.get('databases').jedi_base.database;
+var jedi_db_username = nconf.get('databases').jedi_base.user;
+var jedi_db_password = nconf.get('databases').jedi_base.password;
+var jedi_db_options  = {};
+jedi_db_options.host = nconf.get('databases').jedi_base.host;
+jedi_db_options.port = nconf.get('databases').jedi_base.port;
+
+var jedi_sequelize   = new Sequelize(jedi_db, jedi_db_username, jedi_db_password, jedi_db_options);
+
+require('./api/models/user.model.js')(jedi_sequelize);
+
+jedi_sequelize.sync()
+
+
+
+
+
+
+var sessionStore       = new SessionStore(nconf.get('databases').jedi_base);
 var port               = nconf.get("port");
 var title              = nconf.get("title");
 var node_env           = nconf.get("NODE_ENV");
@@ -71,8 +89,8 @@ app.use(bodyParser.urlencoded({
 }));
 //session storage configuration
 app.use(session({
-  key: 'athena_session',
-  secret: 'goddessofwisdomandintelligents',
+  key: 'jedi_session',
+  secret: 'maytheforcebewithyou',
   store: sessionStore,
   saveUninitialized: true,
   resave: true

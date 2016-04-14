@@ -4,7 +4,7 @@
   "port": 8400,
   "hot-server": true,
   "databases": {
-    "athena": {
+    "jedi_base": {
       "host": "localhost",
       "port": 3306,
       "user": "jedi",
